@@ -1,0 +1,67 @@
+.modale {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    display: none;
+}
+
+.modale.show {
+    display: initial;
+}
+
+.modale-content {
+    width: 80%;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100vh;
+}
+
+.media_title {
+    position: absolute;
+    font-size: 22px;
+    top: 92%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.modale-content img {
+    max-height: 80vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.modale-content video {
+    max-height: 80vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.close {
+    color: black;
+    font-size: 50px;
+    position: fixed;
+    top: 20px;
+    right: 40px;
+    cursor: pointer;
+}
+
+.left {
+    position: fixed;
+    top: 50%;
+    left: 5%;
+    font-size: 50px;
+}
+
+.right {
+    position: fixed;
+    top: 50%;
+    left: 95%;
+    font-size: 50px;
+}
