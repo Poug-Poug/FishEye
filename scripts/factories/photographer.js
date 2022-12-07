@@ -16,7 +16,6 @@ function photographerFactory(data) {
     return { name, picture, getUserCardDOM }
 }
 
-// Class photographe
 class Photographer {
     constructor(data) {
         this.portrait = data.portrait;
@@ -28,7 +27,6 @@ class Photographer {
         this.id = data.id;
     }
     createHTML() {
-        console.log(this.price);
         return `
         <a tabindex="3" href="../photographer.html?id=${this.id}">
             <div tabindex="C" class="this_div"> 

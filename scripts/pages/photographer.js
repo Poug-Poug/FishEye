@@ -1,10 +1,11 @@
+// Function to get Photographer data
 async function getData() {
     const data = fetch("../data/photographers.json")
         .then(response => response.json())
     return data;
 }
 
-// Adapter pour 2ème page
+// Function to display photographer data on the second page
  function displayData() {
     const photographerMediaSection = document.querySelector(".photograph-header");
 
@@ -12,6 +13,7 @@ async function getData() {
         photographerMediaSection.innerHTML += photographerMediaModel.createHtml2(); // Permet de sauvegarder l'ancienne valeur
 };
 
+// Function to get the id of the photographe
 function getIdPhotographers(photographers) {
     let params = new URLSearchParams(document.location.search.substring(1));
     const identifier = params.get("id");
@@ -22,17 +24,16 @@ function getIdPhotographers(photographers) {
     return identifier;
 }
 
+// Function to get media's photographer
 function getMediaPhotographers(media,idPhotographer) {
-   // let goodMedia = media.find(media => media.photographerId = idPhotographer); OK pour 1 media, mais là il faut tous les media
    let goodMedia = media.filter(media => media.photographerId == idPhotographer);
 
     displayMedia(goodMedia); // Tableau à trier
 }
 
 
-//Afficher les media
+//Function to screen the media on the page
 function displayMedia(medias) {
-    console.log("displayMedia");
     const mediaSection = document.querySelector(".media_section");
     mediaSection.innerHTML = '';
 
@@ -43,6 +44,7 @@ function displayMedia(medias) {
     });
 };
 
+// Function to get all photo likes
 function getAllLikes(){
     let likesDiv = document.querySelectorAll(".media_number_like");
 
@@ -55,19 +57,20 @@ function getAllLikes(){
     return totalLikes;
 }
 
+// Function to get the good price for the photographe
 function getPricePhotographer(photographers, idPhotographe){
     let goodPhotographe = photographers.find(photographe => photographe.id == idPhotographe);
     return goodPhotographe.price;
 }
 
+//Function to screen the good price and a total of all photo's like
 function createLikeAndPrice(price, like) {
-    console.log(price);
-    console.log(like);
     let likePriceDiv = document.querySelector(".static_like");
     likePriceDiv.innerHTML = `<div class="static_total_like">${getAllLikes()} <i class="fa-solid fa-heart"></i></div>
     <div class="static_price">${price}€ / jour</div>`;
 }
 
+// Function to like a photo and add a total number like
 function addlike(like) {
     let hearth = document.querySelectorAll(".hearth");
     let number_like = document.querySelectorAll(".media_number_like");
@@ -110,7 +113,7 @@ function addlike(like) {
     
 }
 
-
+// Function to sort media by différent sorts
 function sort(media, id, allLikes){
     let goodMedia = media.filter(media => media.photographerId == id);
     let sortDiv = document.querySelector(".tri_select_select");
@@ -141,13 +144,16 @@ function sort(media, id, allLikes){
            })
         }
         displayMedia(goodMedia);
-        modal();
         addlike(allLikes);
+        lightbox();
+        
     })
 }
 
 let pricePhotographe = undefined;
 
+
+//Function to init
 async function init() {
     // Récupère les datas des photographes
     const { photographers, media } = await getData();
@@ -166,6 +172,7 @@ async function init() {
 init();
 
 
+// Lightbox function
 function lightbox() {
     const modale = document.querySelector('.modale');
     const close = document.querySelector('.close');
@@ -274,9 +281,6 @@ function lightbox() {
             
     }
 
-    
-    
-
 
     close.addEventListener('click', function(){
         modale.classList.remove("show");
@@ -286,11 +290,10 @@ function lightbox() {
 
 }
 
-
+// Contact Modal Function
 function contactModal() {
 
     const modal_button = document.querySelector('.submit_button');
-    const contact_modal = document.querySelector('#contact_modal');
     const firstname_input = document.querySelector('.firstname_input');
     const lastname_input = document.querySelector('.lastname_input');
     const email_input = document.querySelector('.email_input');
