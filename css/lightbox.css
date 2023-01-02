@@ -25,6 +25,7 @@
     top: 92%;
     left: 50%;
     transform: translate(-50%,-50%);
+    color: #911B1C;
 }
 
 .modale-content img {
@@ -44,7 +45,7 @@
 }
 
 .close {
-    color: black;
+    color:#911B1C;
     font-size: 50px;
     position: fixed;
     top: 20px;
@@ -57,6 +58,7 @@
     top: 50%;
     left: 5%;
     font-size: 50px;
+    color: #911B1C;
 }
 
 .right {
@@ -64,4 +66,5 @@
     top: 50%;
     left: 95%;
     font-size: 50px;
+    color: #911B1C;
 }
