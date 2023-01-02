@@ -1,6 +1,6 @@
 // Function to get Photographer data
 async function getData() {
-    const data = fetch("../data/photographers.json")
+    const data = fetch("./data/photographers.json")
         .then(response => response.json())
     return data;
 }
@@ -145,6 +145,7 @@ function sort(media, id, allLikes){
         }
         displayMedia(goodMedia);
         addlike(allLikes);
+        // Fonction remove event listener
         lightbox();
         
     })
@@ -175,15 +176,107 @@ init();
 // Lightbox function
 function lightbox() {
     const modale = document.querySelector('.modale');
-    const close = document.querySelector('.close');
     const modaleContent = document.querySelector(".media_modale");
     const allLinks = document.querySelectorAll('.flexbox_media');
     const allTitle = document.querySelectorAll('.media_infos_title');
     const modaleTitle = document.querySelector('.media_title');
+    const close = document.querySelector('.close');
     const right = document.querySelector('.right');
     const left = document.querySelector('.left');
+
     
+    const rightClickEvent = () => { 
+        for(let i = 0; i < allLinks.length; i++) {
+            if(modaleContent.children[0].src == allLinks[i].children[0].src) {
+                    modaleContent.innerHTML = "";
+                    modaleTitle.innerHTML = "";
+                    if(i == allLinks.length - 1) {
+                        modaleTitle.innerHTML = allTitle[i].innerHTML;
+                        const copy = allLinks[0].children[0].cloneNode(true);
+                        modaleContent.appendChild(copy);
+                    } else {
+                        modaleTitle.innerHTML = allTitle[i + 1].innerHTML;
+                        const copy = allLinks[i + 1].children[0].cloneNode(true);
+                        modaleContent.appendChild(copy);
+                    }
+                break;
+            } 
+        }
+    }
+
+    function rightKeyEvent(e) { 
+        if(e.key === 'ArrowRight'){
+        for(let i = 0; i < allLinks.length; i++) {
+            if(modaleContent.children[0].src == allLinks[i].children[0].src) {
+                    modaleContent.innerHTML = "";
+                    modaleTitle.innerHTML = "";
+                    if(i == allLinks.length - 1) {
+                        modaleTitle.innerHTML = allTitle[i].innerHTML;
+                        const copy = allLinks[0].children[0].cloneNode(true);
+                        modaleContent.appendChild(copy);
+                    } else {
+                        modaleTitle.innerHTML = allTitle[i + 1].innerHTML;
+                        const copy = allLinks[i + 1].children[0].cloneNode(true);
+                        modaleContent.appendChild(copy);
+                    }
+                break;
+            } 
+        }
+    }
+    }
+
+    const leftClickEvent = () => { 
+        for(let i = 0; i < allLinks.length; i++) {
+            if(modaleContent.children[0].src == allLinks[i].children[0].src) {
+                modaleContent.innerHTML = "";
+                modaleTitle.innerHTML = "";
+                if(i == 0){
+                    modaleTitle.innerHTML = allTitle[i].innerHTML;
+                    const copy = allLinks[allLinks.length - 1].children[0].cloneNode(true);
+                    modaleContent.appendChild(copy);
+                } else {
+                    modaleTitle.innerHTML = allTitle[i - 1].innerHTML;
+                    const copy = allLinks[i-1].children[0].cloneNode(true);
+                    modaleContent.appendChild(copy);
+                }
+            break;
+            }
+        }
+    }
+
+    function leftKeyEvent(e) { 
+        if(e.key === 'ArrowLeft'){
+            for(let i = 0; i < allLinks.length; i++) {
+                if(modaleContent.children[0].src == allLinks[i].children[0].src) {
+                    modaleContent.innerHTML = "";
+                    modaleTitle.innerHTML = "";
+                    if(i == 0){
+                        modaleTitle.innerHTML = allTitle[i].innerHTML;
+                        const copy = allLinks[allLinks.length - 1].children[0].cloneNode(true);
+                        modaleContent.appendChild(copy);
+                    } else {
+                        modaleTitle.innerHTML = allTitle[i - 1].innerHTML;
+                        const copy = allLinks[i-1].children[0].cloneNode(true);
+                        modaleContent.appendChild(copy);
+                    }
+                break;
+                }
+            }
+    }
+    }
+
+    
+
+    
+
     for(let link of allLinks){
+
+
+    right.addEventListener('click',rightClickEvent);
+    link.addEventListener('keyup',rightKeyEvent);
+    left.addEventListener('click',leftClickEvent);
+    link.addEventListener('keyup',leftKeyEvent);
+
         link.addEventListener('click', function(){
             const copy = link.children[0].cloneNode(true);
             modaleContent.appendChild(copy);
@@ -191,102 +284,32 @@ function lightbox() {
 
             modale.classList.add("show");
 
-            right.addEventListener('click',function(){
-                for(let i = 0; i < allLinks.length; i++) {
-                    if(modaleContent.children[0].src == allLinks[i].children[0].src) {
-                            modaleContent.innerHTML = "";
-                            modaleTitle.innerHTML = "";
-                            if(i == allLinks.length - 1) {
-                                modaleTitle.innerHTML = allTitle[i].innerHTML;
-                                const copy = allLinks[0].children[0].cloneNode(true);
-                                modaleContent.appendChild(copy);
-                            } else {
-                                modaleTitle.innerHTML = allTitle[i + 1].innerHTML;
-                                const copy = allLinks[i + 1].children[0].cloneNode(true);
-                                modaleContent.appendChild(copy);
-                            }
-                        break;
-                    } 
-                }
-            })
-            left.addEventListener('click',function(){
-                for(let i = 0; i < allLinks.length; i++) {
-                    if(modaleContent.children[0].src == allLinks[i].children[0].src) {
-                        modaleContent.innerHTML = "";
-                        modaleTitle.innerHTML = "";
-                        if(i == 0){
-                            modaleTitle.innerHTML = allTitle[i].innerHTML;
-                            const copy = allLinks[allLinks.length - 1].children[0].cloneNode(true);
-                            modaleContent.appendChild(copy);
-                        } else {
-                            modaleTitle.innerHTML = allTitle[i - 1].innerHTML;
-                            const copy = allLinks[i-1].children[0].cloneNode(true);
-                            modaleContent.appendChild(copy);
-                        }
-                    break;
-                    }
-                }
-           })
         })
         link.addEventListener('keyup', function(e){
-            if(e.key == 'Enter'){
+            if(e.key === 'Enter'){
             const copy = link.children[0].cloneNode(true);
             modaleContent.appendChild(copy);
             modaleTitle.innerHTML = link.nextElementSibling.children[0].innerHTML;
 
             modale.classList.add("show");
+            }
 
-            link.addEventListener('keyup',function(e){
-                if(e.key == 'ArrowRight'){
-                for(let i = 0; i < allLinks.length; i++) {
-                    if(modaleContent.children[0].src == allLinks[i].children[0].src) {
-                            modaleContent.innerHTML = "";
-                            modaleTitle.innerHTML = "";
-                            if(i == allLinks.length - 1) {
-                                modaleTitle.innerHTML = allTitle[i].innerHTML;
-                                const copy = allLinks[0].children[0].cloneNode(true);
-                                modaleContent.appendChild(copy);
-                            } else {
-                                modaleTitle.innerHTML = allTitle[i + 1].innerHTML;
-                                const copy = allLinks[i + 1].children[0].cloneNode(true);
-                                modaleContent.appendChild(copy);
-                            }
-                        break;
-                    } 
-                }
-            }
-            })
-            link.addEventListener('keyup',function(e){
-                if(e.key == 'ArrowLeft'){
-                for(let i = 0; i < allLinks.length; i++) {
-                    if(modaleContent.children[0].src == allLinks[i].children[0].src) {
-                        modaleContent.innerHTML = "";
-                        modaleTitle.innerHTML = "";
-                        if(i == 0){
-                            modaleTitle.innerHTML = allTitle[i].innerHTML;
-                            const copy = allLinks[allLinks.length - 1].children[0].cloneNode(true);
-                            modaleContent.appendChild(copy);
-                        } else {
-                            modaleTitle.innerHTML = allTitle[i - 1].innerHTML;
-                            const copy = allLinks[i-1].children[0].cloneNode(true);
-                            modaleContent.appendChild(copy);
-                        }
-                    break;
-                    }
-                }
-            }
-           })
-        }
         })
-            
     }
 
+    
+        
+        
 
     close.addEventListener('click', function(){
         modale.classList.remove("show");
         modaleContent.innerHTML = '';
         modaleTitle.innerHTML = "";
+
+        //removeEvent();
+
     })
+
 
 }
 
