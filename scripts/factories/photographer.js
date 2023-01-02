@@ -28,10 +28,10 @@ class Photographer {
     }
     createHTML() {
         return `
-        <a tabindex="3" href="../photographer.html?id=${this.id}">
+        <a tabindex="3" href="photographer.html?id=${this.id}">
             <div tabindex="C" class="this_div"> 
                 <div tabindex="" class= "this_portrait">
-                    <img src="../Images/Photographer/${this.portrait}" alt ="Portrait de ${this.name}">
+                    <img src="Images/Photographer/${this.portrait}" alt ="Portrait de ${this.name}">
                 </div>
                 <div tabindex="" class="this_name">${this.name}</div>
                 <div tabindex="" class="this_place">${this.city}, ${this.country}</div>
@@ -51,7 +51,7 @@ class Photographer {
             </div>
             <button tabindex="2" class="contact_button" onclick="displayModal()">Contactez-moi</button>
             <div class= "photographer_portrait">
-                    <img tabindex="3" src="../Images/Photographer/${this.portrait}" alt ="Portrait de ${this.name}">
+                    <img tabindex="3" src="Images/Photographer/${this.portrait}" alt ="Portrait de ${this.name}">
             </div>
         </div>
         `
@@ -85,7 +85,7 @@ class Image {
     return `
     <div class = "flexbox_media_div">
         <div class = "flexbox_media"> 
-            <img tabindex="5" class="all_links" src="../Images/${this.photographerId}/${this.image}" alt ="Image de ${this.title}">
+            <img tabindex="5" class="all_links" src="Images/${this.photographerId}/${this.image}" alt ="Image de ${this.title}">
         </div>
         <div class = "media_infos">
             <div tabindex="5" class= "media_infos_title">${this.title}</div>
@@ -114,7 +114,7 @@ class Video {
         return `
         <div class = "flexbox_media_div">
         <div class = "flexbox_media"> 
-            <video controls class="all_links" src="../Images/${this.photographerId}/${this.video}" alt ="Video de ${this.title}">
+            <video controls class="all_links" src="Images/${this.photographerId}/${this.video}" alt ="Video de ${this.title}">
         </div>
         <div class = "media_infos">
             <div class= "media_infos_title">${this.title}</div>

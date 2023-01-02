@@ -1,6 +1,6 @@
 // Function to get Photographer data
 async function getData() {
-    const data = fetch("./data/photographers.json")
+    const data = fetch("data/photographers.json")
         .then(response => response.json())
     return data;
 }
