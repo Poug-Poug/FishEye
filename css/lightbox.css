@@ -1,4 +1,4 @@
-.modale {
+.lightbox {
     position: fixed;
     left: 0;
     top: 0;
@@ -8,18 +8,18 @@
     display: none;
 }
 
-.modale.show {
+.lightbox.show {
     display: initial;
 }
 
-.modale-content {
+.lightbox-content {
     width: 80%;
     margin: auto;
     max-width: 100%;
     max-height: 100vh;
 }
 
-.media_title {
+.lightbox_title {
     position: absolute;
     font-size: 22px;
     top: 92%;
@@ -28,7 +28,7 @@
     color: #911B1C;
 }
 
-.modale-content img {
+.lightbox-content img {
     max-height: 80vh;
     position: absolute;
     top: 50%;
@@ -36,7 +36,7 @@
     transform: translate(-50%,-50%);
 }
 
-.modale-content video {
+.lightbox-content video {
     max-height: 80vh;
     position: absolute;
     top: 50%;

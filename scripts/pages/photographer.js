@@ -143,9 +143,9 @@ function sort(media, id, allLikes){
                 return 0;
            })
         }
+        // On relance ces fonctions après le tri pour que ces fonctionnalités fonctionnent toujours
         displayMedia(goodMedia);
         addlike(allLikes);
-        // Fonction remove event listener
         lightbox();
         
     })
@@ -154,7 +154,7 @@ function sort(media, id, allLikes){
 let pricePhotographe = undefined;
 
 
-//Function to init
+// Fonction permettant de lancer les fonctions indispensables au bon fonctionnement du site FishEye
 async function init() {
     // Récupère les datas des photographes
     const { photographers, media } = await getData();
@@ -173,51 +173,53 @@ async function init() {
 init();
 
 
-// Lightbox function
+// Fonction permettant d'ouvrir une lightbox contenant un carroussel de toutes les images d'un photographe
 function lightbox() {
-    const modale = document.querySelector('.modale');
-    const modaleContent = document.querySelector(".media_modale");
+    const lightbox = document.querySelector('.lightbox');
+    const lightboxContent = document.querySelector(".media_lightbox");
     const allLinks = document.querySelectorAll('.flexbox_media');
     const allTitle = document.querySelectorAll('.media_infos_title');
-    const modaleTitle = document.querySelector('.media_title');
+    const lightboxTitle = document.querySelector('.lightbox_title');
     const close = document.querySelector('.close');
     const right = document.querySelector('.right');
     const left = document.querySelector('.left');
+    const main = document.getElementById("main");
 
-    
+    // Permet d'ajouter la fonctionnalité de clic droit pour se déplacer dans le carroussel d'image
     const rightClickEvent = () => { 
         for(let i = 0; i < allLinks.length; i++) {
-            if(modaleContent.children[0].src == allLinks[i].children[0].src) {
-                    modaleContent.innerHTML = "";
-                    modaleTitle.innerHTML = "";
+            if(lightboxContent.children[0].src == allLinks[i].children[0].src) {
+                    lightboxContent.innerHTML = "";
+                    lightboxTitle.innerHTML = "";
                     if(i == allLinks.length - 1) {
-                        modaleTitle.innerHTML = allTitle[i].innerHTML;
+                        lightboxTitle.innerHTML = allTitle[i].innerHTML;
                         const copy = allLinks[0].children[0].cloneNode(true);
-                        modaleContent.appendChild(copy);
+                        lightboxContent.appendChild(copy);
                     } else {
-                        modaleTitle.innerHTML = allTitle[i + 1].innerHTML;
+                        lightboxTitle.innerHTML = allTitle[i + 1].innerHTML;
                         const copy = allLinks[i + 1].children[0].cloneNode(true);
-                        modaleContent.appendChild(copy);
+                        lightboxContent.appendChild(copy);
                     }
                 break;
             } 
         }
     }
 
+    // Permet d'ajouter la fonctionnalité de flêche droite pour se déplacer dans le carroussel d'image
     function rightKeyEvent(e) { 
         if(e.key === 'ArrowRight'){
         for(let i = 0; i < allLinks.length; i++) {
-            if(modaleContent.children[0].src == allLinks[i].children[0].src) {
-                    modaleContent.innerHTML = "";
-                    modaleTitle.innerHTML = "";
+            if(lightboxContent.children[0].src == allLinks[i].children[0].src) {
+                    lightboxContent.innerHTML = "";
+                    lightboxTitle.innerHTML = "";
                     if(i == allLinks.length - 1) {
-                        modaleTitle.innerHTML = allTitle[i].innerHTML;
+                        lightboxTitle.innerHTML = allTitle[i].innerHTML;
                         const copy = allLinks[0].children[0].cloneNode(true);
-                        modaleContent.appendChild(copy);
+                        lightboxContent.appendChild(copy);
                     } else {
-                        modaleTitle.innerHTML = allTitle[i + 1].innerHTML;
+                        lightboxTitle.innerHTML = allTitle[i + 1].innerHTML;
                         const copy = allLinks[i + 1].children[0].cloneNode(true);
-                        modaleContent.appendChild(copy);
+                        lightboxContent.appendChild(copy);
                     }
                 break;
             } 
@@ -225,39 +227,41 @@ function lightbox() {
     }
     }
 
+    // Permet d'ajouter la fonctionnalité de clic gauche pour se déplacer dans le carroussel d'image
     const leftClickEvent = () => { 
         for(let i = 0; i < allLinks.length; i++) {
-            if(modaleContent.children[0].src == allLinks[i].children[0].src) {
-                modaleContent.innerHTML = "";
-                modaleTitle.innerHTML = "";
+            if(lightboxContent.children[0].src == allLinks[i].children[0].src) {
+                lightboxContent.innerHTML = "";
+                lightboxTitle.innerHTML = "";
                 if(i == 0){
-                    modaleTitle.innerHTML = allTitle[i].innerHTML;
+                    lightboxTitle.innerHTML = allTitle[i].innerHTML;
                     const copy = allLinks[allLinks.length - 1].children[0].cloneNode(true);
-                    modaleContent.appendChild(copy);
+                    lightboxContent.appendChild(copy);
                 } else {
-                    modaleTitle.innerHTML = allTitle[i - 1].innerHTML;
+                    lightboxTitle.innerHTML = allTitle[i - 1].innerHTML;
                     const copy = allLinks[i-1].children[0].cloneNode(true);
-                    modaleContent.appendChild(copy);
+                    lightboxContent.appendChild(copy);
                 }
             break;
             }
         }
     }
 
+    // Permet d'ajouter la fonctionnalité de flêche gauche pour se déplacer dans le carroussel d'image
     function leftKeyEvent(e) { 
         if(e.key === 'ArrowLeft'){
             for(let i = 0; i < allLinks.length; i++) {
-                if(modaleContent.children[0].src == allLinks[i].children[0].src) {
-                    modaleContent.innerHTML = "";
-                    modaleTitle.innerHTML = "";
+                if(lightboxContent.children[0].src == allLinks[i].children[0].src) {
+                    lightboxContent.innerHTML = "";
+                    lightboxTitle.innerHTML = "";
                     if(i == 0){
-                        modaleTitle.innerHTML = allTitle[i].innerHTML;
+                        lightboxTitle.innerHTML = allTitle[i].innerHTML;
                         const copy = allLinks[allLinks.length - 1].children[0].cloneNode(true);
-                        modaleContent.appendChild(copy);
+                        lightboxContent.appendChild(copy);
                     } else {
-                        modaleTitle.innerHTML = allTitle[i - 1].innerHTML;
+                        lightboxTitle.innerHTML = allTitle[i - 1].innerHTML;
                         const copy = allLinks[i-1].children[0].cloneNode(true);
-                        modaleContent.appendChild(copy);
+                        lightboxContent.appendChild(copy);
                     }
                 break;
                 }
@@ -267,31 +271,33 @@ function lightbox() {
 
     
 
-    
-
     for(let link of allLinks){
 
-
-    right.addEventListener('click',rightClickEvent);
+    // Ajout des déclencheurs 
     link.addEventListener('keyup',rightKeyEvent);
-    left.addEventListener('click',leftClickEvent);
     link.addEventListener('keyup',leftKeyEvent);
+    right.addEventListener('click',rightClickEvent);
+    left.addEventListener('click',leftClickEvent);
 
         link.addEventListener('click', function(){
             const copy = link.children[0].cloneNode(true);
-            modaleContent.appendChild(copy);
-            modaleTitle.innerHTML = link.nextElementSibling.children[0].innerHTML;
+            lightboxContent.appendChild(copy);
+            lightboxTitle.innerHTML = link.nextElementSibling.children[0].innerHTML;
 
-            modale.classList.add("show");
+            lightbox.classList.add("show");
+
+            main.setAttribute("display","none");
 
         })
         link.addEventListener('keyup', function(e){
             if(e.key === 'Enter'){
             const copy = link.children[0].cloneNode(true);
-            modaleContent.appendChild(copy);
-            modaleTitle.innerHTML = link.nextElementSibling.children[0].innerHTML;
+            lightboxContent.appendChild(copy);
+            lightboxTitle.innerHTML = link.nextElementSibling.children[0].innerHTML;
 
-            modale.classList.add("show");
+            lightbox.classList.add("show");
+
+            main.setAttribute("display","none");
             }
 
         })
@@ -300,37 +306,27 @@ function lightbox() {
     
         
         
-
+// Permet de fermer la lightbox
     close.addEventListener('click', function(){
-        modale.classList.remove("show");
-        modaleContent.innerHTML = '';
-        modaleTitle.innerHTML = "";
+        lightbox.classList.remove("show");
+        lightboxContent.innerHTML = '';
+        lightboxTitle.innerHTML = "";
 
-        //removeEvent();
+        main.removeAttribute("display","none");
+
+    })
+    close.addEventListener('keyup', function(e){
+        if(e.key == 'Enter'){
+        lightbox.classList.remove("show");
+        lightboxContent.innerHTML = '';
+        lightboxTitle.innerHTML = "";
+
+        main.removeAttribute("display","none");
+        }
 
     })
 
 
 }
 
-// Contact Modal Function
-function contactModal() {
 
-    const modal_button = document.querySelector('.submit_button');
-    const firstname_input = document.querySelector('.firstname_input');
-    const lastname_input = document.querySelector('.lastname_input');
-    const email_input = document.querySelector('.email_input');
-
-    modal_button.addEventListener('click',function(e){
-
-
-        e.preventDefault();
-
-        console.log(firstname_input.value);
-        console.log(lastname_input.value);
-        console.log(email_input.value);
-
-        closeModal();
-    })
-
-}
