@@ -286,7 +286,7 @@ function lightbox() {
 
             lightbox.classList.add("show");
 
-            main.setAttribute("display","none");
+          //  main.setAttribute("display","none");
 
         })
         link.addEventListener('keyup', function(e){
@@ -297,7 +297,7 @@ function lightbox() {
 
             lightbox.classList.add("show");
 
-            main.setAttribute("display","none");
+            //main.setAttribute("display","none");
             }
 
         })
@@ -312,7 +312,7 @@ function lightbox() {
         lightboxContent.innerHTML = '';
         lightboxTitle.innerHTML = "";
 
-        main.removeAttribute("display","none");
+       // main.removeAttribute("display","none");
 
     })
     close.addEventListener('keyup', function(e){
@@ -321,7 +321,7 @@ function lightbox() {
         lightboxContent.innerHTML = '';
         lightboxTitle.innerHTML = "";
 
-        main.removeAttribute("display","none");
+       // main.removeAttribute("display","none");
         }
 
     })
