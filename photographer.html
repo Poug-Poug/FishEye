@@ -40,14 +40,14 @@
         </header>
 				<form>
 					<div>
-						<label>Prénom</label>
-              <input type="text" class="firstname_input"/>
-            <label>Nom</label>
-              <input type="text" class="lastname_input"/>
-            <label>Email</label>
-              <input type="text" class="email_input"/>
-            <label>Votre message</label>
-						  <input type="text"/>
+						<label for="prenom">Prénom</label>
+              <input type="text" name="prenom" value="" id="prenom" class="firstname_input"/>
+            <label for="nom">Nom</label>
+              <input type="text" name="nom" value="" id="nom" class="lastname_input"/>
+            <label for="email">Email</label>
+              <input type="text" name="email" value="" id="email" class="email_input"/>
+            <label for="commentaires">Votre message</label>
+						  <input type="text" name="commentaires" value="" id="commentaires"/>
 					</div>
           <button class="submit_button">Envoyer</button>
 				</form>
@@ -63,8 +63,8 @@
       </div>
     </div>
   </main>
-    <script src="scripts/factories/photographer.js"></script>
-    <script src="scripts/utils/contactForm.js"></script>
+    <script src="./scripts/factories/photographer.js"></script>
+    <script src="./scripts/utils/contactForm.js"></script>
     <script src="scripts/pages/photographer.js"></script>
   </body>
 </html>

@@ -5,14 +5,6 @@ async function getData() {
     return data;
 }
 
-// Function to display photographer data on the second page
- function displayData() {
-    const photographerMediaSection = document.querySelector(".photograph-header");
-
-        let photographerMediaModel = new Photographer(photographe);
-        photographerMediaSection.innerHTML += photographerMediaModel.createHtml2(); // Permet de sauvegarder l'ancienne valeur
-};
-
 // Function to get the id of the photographe
 function getIdPhotographers(photographers) {
     let params = new URLSearchParams(document.location.search.substring(1));
@@ -64,7 +56,7 @@ function getPricePhotographer(photographers, idPhotographe){
 }
 
 //Function to screen the good price and a total of all photo's like
-function createLikeAndPrice(price, like) {
+function createLikeAndPrice(price) {
     let likePriceDiv = document.querySelector(".static_like");
     likePriceDiv.innerHTML = `<div class="static_total_like">${getAllLikes()} <i class="fa-solid fa-heart"></i></div>
     <div class="static_price">${price}€ / jour</div>`;
@@ -184,6 +176,7 @@ function lightbox() {
     const right = document.querySelector('.right');
     const left = document.querySelector('.left');
     const main = document.getElementById("main");
+    const main_no_lightbox = document.querySelector("#main_no_lightbox");
 
     // Permet d'ajouter la fonctionnalité de clic droit pour se déplacer dans le carroussel d'image
     const rightClickEvent = () => { 
@@ -286,7 +279,7 @@ function lightbox() {
 
             lightbox.classList.add("show");
 
-          //  main.setAttribute("display","none");
+          
 
         })
         link.addEventListener('keyup', function(e){
@@ -297,7 +290,6 @@ function lightbox() {
 
             lightbox.classList.add("show");
 
-            //main.setAttribute("display","none");
             }
 
         })
@@ -312,7 +304,6 @@ function lightbox() {
         lightboxContent.innerHTML = '';
         lightboxTitle.innerHTML = "";
 
-       // main.removeAttribute("display","none");
 
     })
     close.addEventListener('keyup', function(e){
@@ -321,7 +312,6 @@ function lightbox() {
         lightboxContent.innerHTML = '';
         lightboxTitle.innerHTML = "";
 
-       // main.removeAttribute("display","none");
         }
 
     })

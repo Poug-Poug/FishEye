@@ -1,21 +1,3 @@
-function photographerFactory(data) {
-    const { name, portrait } = data;
-
-    const picture = `assets/photographers/${portrait}`;
-
-    function getUserCardDOM() {
-        const article = document.createElement( 'article' );
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
-        const h2 = document.createElement( 'h2' );
-        h2.textContent = name;
-        article.appendChild(img);
-        article.appendChild(h2);
-        return (article);
-    }
-    return { name, picture, getUserCardDOM }
-}
-
 class Photographer {
     constructor(data) {
         this.portrait = data.portrait;
@@ -60,8 +42,8 @@ class Photographer {
 
 class MediaFactory {
     constructor(data) {
-
-        if(data.hasOwnProperty("image") == true) {
+        if(data.image) {
+        // if(data.hasOwnProperty("image") == true) {
             return new Image(data);
         } else {
             return new Video(data);
