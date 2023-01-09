@@ -40,10 +40,10 @@ class Photographer {
     }
 }
 
+
 class MediaFactory {
     constructor(data) {
         if(data.image) {
-        // if(data.hasOwnProperty("image") == true) {
             return new Image(data);
         } else {
             return new Video(data);
